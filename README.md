@@ -1,97 +1,137 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Movie Discovery App
 
-# Getting Started
+A React Native mobile application built using the TMDB API to discover movies and explore TV shows. Developed as a practical assignment for **Xplor BizConnect — React Native Developer**.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- Browse trending and popular movies.
+- Explore top-rated, now-playing, and upcoming movies.
+- Search movies by title.
+- Explore movies by genre.
+- View movie details, ratings, overview, cast, crew, and videos.
+- Discover similar and recommended movies.
+- Browse popular TV shows and search for TV shows.
+- Reusable movie cards and organized screen components.
+- Loading indicators and error handling with retry options.
+- Bottom-tab navigation and movie-detail navigation.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Technology Stack
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- React Native
+- JavaScript
+- Axios
+- React Navigation
+- TMDB API
+- Git and GitHub
 
-```sh
-# Using npm
+## Prerequisites
+
+- Node.js and npm
+- Android Studio and Android SDK for Android development
+- JDK version compatible with the React Native version used by this project
+- A TMDB account and API Read Access Token
+
+## Installation and Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/lakshminarasiman1994-source/MovieDiscoveryApp.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd MovieDiscoveryApp
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Configure the TMDB API Read Access Token locally. Create the file `src/config/env.js` and export your own token:
+
+   ```javascript
+   const TMDB_ACCESS_TOKEN = 'YOUR_TMDB_READ_ACCESS_TOKEN';
+
+   export default TMDB_ACCESS_TOKEN;
+   ```
+
+   Replace the placeholder with your own TMDB Read Access Token. **Do not commit this file or publish your token.** The file is excluded through `.gitignore`.
+
+## Running the Application
+
+Start the Metro bundler:
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+In a separate terminal, run the Android application:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+Alternatively, open the Android project in Android Studio and run it on an emulator or connected Android device.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+The first Android build may take additional time while Gradle downloads dependencies.
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+## Implemented TMDB API Endpoints
 
-```sh
-bundle install
+The application uses the following TMDB API endpoints:
+
+1. `GET /trending/movie/day` — Trending movies
+2. `GET /movie/popular` — Popular movies
+3. `GET /movie/top_rated` — Top-rated movies
+4. `GET /movie/now_playing` — Movies currently in theatres
+5. `GET /movie/upcoming` — Upcoming movies
+6. `GET /search/movie` — Search movies
+7. `GET /movie/{movie_id}` — Movie details
+8. `GET /movie/{movie_id}/credits` — Cast and crew
+9. `GET /movie/{movie_id}/videos` — Movie videos and trailers
+10. `GET /movie/{movie_id}/similar` — Similar movies
+11. `GET /movie/{movie_id}/recommendations` — Recommended movies
+12. `GET /genre/movie/list` — Movie genres
+13. `GET /discover/movie` — Discover movies by genre
+14. `GET /tv/popular` — Popular TV shows
+15. `GET /search/tv` — Search TV shows
+
+## Project Structure
+
+```text
+MovieDiscoveryApp/
+├── App.js
+├── src/
+│   ├── config/
+│   │   └── env.js             # Local credentials; not committed
+│   ├── navigation/
+│   ├── screens/
+│   ├── services/
+│   │   ├── api.js
+│   │   └── movieService.js
+│   ├── components/
+│   ├── theme/
+│   └── utils/
+├── android/
+├── ios/
+├── package.json
+├── .gitignore
+└── README.md
 ```
 
-Then, and every time you update your native dependencies, run:
+## Error Handling
 
-```sh
-bundle exec pod install
-```
+The application includes loading indicators, error messages, retry actions, and fallback poster handling in relevant screens. Network connectivity and valid TMDB credentials are required to retrieve live data.
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## API Documentation
 
-```sh
-# Using npm
-npm run ios
+TMDB API documentation: https://developer.themoviedb.org/reference/getting-started
 
-# OR using Yarn
-yarn ios
-```
+## Notes
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- Internet access is required for API requests and remote images.
+- The TMDB Read Access Token must be configured locally before running the application.
+- A token included in a React Native application bundle is not truly secret. Never publish a real token in source code or Git history.
