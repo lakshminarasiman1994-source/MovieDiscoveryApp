@@ -80,12 +80,16 @@ const HomeScreen = ({ navigation }) => {
     const fetchTopMovies = async () => {
       try {
         setTopError('');
+
         const data = await getTopratedMovies();
         setTopMovies(data);
       } catch (err) {
-        console.log('Top Movies API Error:', err.response?.data || err.message);
+        console.log(
+          'Top Rated Movies API Error:',
+          err.response?.data || err.message,
+        );
 
-        setTopError('Unable to load trending movies.');
+        setTopError('Unable to load top-rated movies.');
       } finally {
         setTopLoading(false);
       }
@@ -94,37 +98,38 @@ const HomeScreen = ({ navigation }) => {
     const fetchNowplayingMovies = async () => {
       try {
         setNowError('');
+
         const data = await getNowplayingMovies();
         setPlayingMovies(data);
       } catch (err) {
         console.log(
-          'Nowplaying Movies API Error:',
+          'Now Playing Movies API Error:',
           err.response?.data || err.message,
         );
 
-        setNowError('Unable to load trending movies.');
+        setNowError('Unable to load now-playing movies.');
       } finally {
         setNowLoading(false);
       }
     };
 
-     const fetchUpcomingMovies = async () => {
+    const fetchUpcomingMovies = async () => {
       try {
         setUpcomeError('');
+
         const data = await getUpcomingMovies();
         setUpcomingMovies(data);
       } catch (err) {
         console.log(
-          'UpComing Movies API Error:',
+          'Upcoming Movies API Error:',
           err.response?.data || err.message,
         );
 
-        setUpcomeError('Unable to load trending movies.');
+        setUpcomeError('Unable to load upcoming movies.');
       } finally {
         setUpcomeLoading(false);
       }
     };
-
 
     fetchMovies();
     fetchTrendingMovies();
@@ -151,8 +156,10 @@ const HomeScreen = ({ navigation }) => {
       showsVerticalScrollIndicator={false}
     >
       <Text style={styles.title}>Movie Discovery</Text>
+
       {/* TRENDING MOVIES */}
       <Text style={styles.subtitle}>Trending Movies</Text>
+
       {trendingLoading ? (
         <View style={styles.center}>
           <ActivityIndicator size="small" color={colors.primary} />
@@ -173,8 +180,10 @@ const HomeScreen = ({ navigation }) => {
           nestedScrollEnabled
         />
       )}
+
       {/* POPULAR MOVIES */}
       <Text style={styles.subtitle}>Popular Movies</Text>
+
       {loading ? (
         <View style={styles.center}>
           <ActivityIndicator size="small" color={colors.primary} />
@@ -195,16 +204,18 @@ const HomeScreen = ({ navigation }) => {
           nestedScrollEnabled
         />
       )}
-      {/* // TOP RATED MOVIES */}
-      <Text style={styles.subtitle}>TopRated Movies</Text>
+
+      {/* TOP RATED MOVIES */}
+      <Text style={styles.subtitle}>Top Rated Movies</Text>
+
       {topLoading ? (
         <View style={styles.center}>
           <ActivityIndicator size="small" color={colors.primary} />
-          <Text style={styles.message}>Loading TopRated movies...</Text>
+          <Text style={styles.message}>Loading top-rated movies...</Text>
         </View>
       ) : topError ? (
         <View style={styles.center}>
-          <Text style={styles.error}>{error}</Text>
+          <Text style={styles.error}>{topError}</Text>
         </View>
       ) : (
         <FlatList
@@ -217,16 +228,18 @@ const HomeScreen = ({ navigation }) => {
           nestedScrollEnabled
         />
       )}
-      {/* // NOW PLAYING MOVIES */}
+
+      {/* NOW PLAYING MOVIES */}
       <Text style={styles.subtitle}>Now Playing Movies</Text>
+
       {nowloading ? (
         <View style={styles.center}>
           <ActivityIndicator size="small" color={colors.primary} />
-          <Text style={styles.message}>Loading TopRated movies...</Text>
+          <Text style={styles.message}>Loading now-playing movies...</Text>
         </View>
       ) : nowError ? (
         <View style={styles.center}>
-          <Text style={styles.error}>{error}</Text>
+          <Text style={styles.error}>{nowError}</Text>
         </View>
       ) : (
         <FlatList
@@ -240,16 +253,17 @@ const HomeScreen = ({ navigation }) => {
         />
       )}
 
-       {/* // UPCOMING MOVIES */}
-      <Text style={styles.subtitle}>Up Coming Movies</Text>
+      {/* UPCOMING MOVIES */}
+      <Text style={styles.subtitle}>Upcoming Movies</Text>
+
       {upcomeloading ? (
         <View style={styles.center}>
           <ActivityIndicator size="small" color={colors.primary} />
-          <Text style={styles.message}>Loading Upcoming movies...</Text>
+          <Text style={styles.message}>Loading upcoming movies...</Text>
         </View>
       ) : upcomeError ? (
         <View style={styles.center}>
-          <Text style={styles.error}>{error}</Text>
+          <Text style={styles.error}>{upcomeError}</Text>
         </View>
       ) : (
         <FlatList
