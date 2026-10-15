@@ -129,3 +129,33 @@ TMDB API documentation: https://developer.themoviedb.org/reference/getting-start
 - Internet access is required for API requests and remote images.
 - Configure the TMDB token locally before running the app.
 - A token bundled in a React Native application is not truly secret. Never publish a real token in source code or Git history.
+## Project Structure
+
+```text
+MovieDiscoveryApp/
+├── App.js
+├── src/
+│   ├── components/
+│   │   └── MovieCard.js
+│   ├── navigation/
+│   │   └── AppNavigator.js
+│   ├── screens/
+│   │   ├── HomeScreen.js
+│   │   ├── SearchScreen.js
+│   │   ├── ExploreScreen.js
+│   │   ├── MovieDetailsScreen.js
+│   │   └── TVShowsScreen.js
+│   ├── services/
+│   │   ├── api.js
+│   │   └── movieService.js
+│   ├── theme/
+│   │   ├── colors.js
+│   │   └── spacing.js
+│   └── utils/
+│       └── imageUtils.js
+├── android/
+├── ios/
+├── package.json
+├── package-lock.json
+└── README.md
+```
